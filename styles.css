@@ -203,6 +203,7 @@ th { background: #edf7f7; }
 
 footer { padding: 30px 22px 50px; text-align: center; color: var(--muted); }
 .tour-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(8,31,46,.68); display: grid; place-items: center; padding: 20px; }
+.tour-overlay[hidden] { display: none; }
 .tour-box { width: min(520px, 100%); background: white; border-radius: 22px; padding: 28px; box-shadow: var(--shadow); }
 .tour-box h3 { font-size: 1.7rem; margin-bottom: 8px; }
 .tour-box p { color: var(--muted); line-height: 1.7; }
