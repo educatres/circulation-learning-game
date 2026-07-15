@@ -1,0 +1,248 @@
+:root {
+  --bg: #f4f8fb;
+  --panel: #ffffff;
+  --ink: #17324d;
+  --muted: #63758a;
+  --line: #dbe5ee;
+  --human: #e64d5f;
+  --human-dark: #b92842;
+  --insect: #e9a922;
+  --insect-dark: #9d6900;
+  --blue: #337ab7;
+  --green: #2e9f69;
+  --yellow: #edbd3e;
+  --red: #d94b4b;
+  --shadow: 0 16px 40px rgba(42, 76, 106, 0.11);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #eef6fb 0%, var(--bg) 45%, #edf7f2 100%);
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.hero {
+  min-height: 280px;
+  padding: 56px clamp(24px, 6vw, 90px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background:
+    radial-gradient(circle at 85% 25%, rgba(255,255,255,.34), transparent 22%),
+    linear-gradient(135deg, #154d77, #17798b 55%, #27966d);
+  color: white;
+}
+.hero h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); margin: 0; line-height: .95; }
+.subtitle { font-size: clamp(1.1rem, 2vw, 1.45rem); margin-bottom: 0; }
+.eyebrow { letter-spacing: .14em; text-transform: uppercase; font-weight: 800; font-size: .78rem; opacity: .8; }
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  padding: 17px 12px;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+}
+.tab.active { color: #126d75; border-bottom-color: #1aa08f; }
+
+main { max-width: 1280px; margin: auto; padding: 34px 22px 80px; }
+.panel { display: none; animation: fade .3s ease; }
+.panel.active-panel { display: block; }
+@keyframes fade { from { opacity: .4; transform: translateY(8px); } }
+
+.section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin: 12px 0 26px; }
+.section-heading h2 { font-size: clamp(1.7rem, 4vw, 2.8rem); margin: 4px 0 0; }
+.section-heading p { color: var(--muted); }
+
+.primary-btn, .secondary-btn {
+  border-radius: 12px;
+  padding: 11px 17px;
+  font-weight: 800;
+  border: 1px solid transparent;
+}
+.primary-btn { color: white; background: #137f83; box-shadow: 0 8px 18px rgba(19,127,131,.22); }
+.primary-btn:hover { background: #0e6b70; transform: translateY(-1px); }
+.secondary-btn { color: var(--ink); background: white; border-color: var(--line); }
+.secondary-btn:hover { background: #f2f7fa; }
+.full-width { width: 100%; }
+
+.compare-grid, .challenge-grid, .status-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.organism-card, .status-card, .challenge-card, .dashboard, .giant-lab, .control-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+.organism-card, .status-card, .challenge-card, .dashboard, .giant-lab { padding: 24px; }
+.human-card { border-top: 7px solid var(--human); }
+.insect-card { border-top: 7px solid var(--insect); }
+.card-title-row { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+.card-title-row h3 { margin: 8px 0; font-size: 1.45rem; }
+.tag, .system-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: .78rem;
+  font-weight: 800;
+  background: #eaf4f4;
+}
+.human-card .tag { background: #fde9ec; color: var(--human-dark); }
+.insect-card .tag { background: #fff4d5; color: var(--insect-dark); }
+.system-badge { color: var(--muted); background: #eff4f7; }
+
+.diagram { position: relative; height: 300px; margin: 18px 0; overflow: hidden; border-radius: 18px; background: #f4f8fb; }
+.human-diagram { background: linear-gradient(135deg, #fff0f2, #eef8ff); }
+.organ { position: absolute; z-index: 2; display: grid; place-items: center; font-weight: 900; border-radius: 50%; color: white; }
+.lung { width: 96px; height: 72px; left: 35px; top: 35px; background: #589cc8; border-radius: 45% 45% 55% 55%; }
+.heart { width: 75px; height: 75px; left: calc(50% - 37px); top: 112px; background: var(--human); transform: rotate(-8deg); }
+.muscle { width: 110px; height: 82px; right: 30px; bottom: 30px; background: #af5664; border-radius: 38% 60% 38% 60%; }
+.tube { position: absolute; background: #df8b98; z-index: 1; border-radius: 10px; }
+.tube.vertical { width: 18px; height: 130px; left: 124px; top: 75px; transform: rotate(38deg); }
+.tube.horizontal { height: 18px; width: 245px; left: 48%; top: 179px; transform: rotate(22deg); transform-origin: left; }
+.particle { position: absolute; z-index: 5; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: #43a6e8; color: white; font-size: .75rem; font-weight: 900; box-shadow: 0 5px 14px rgba(51,122,183,.35); }
+.human-particle { left: 62px; top: 52px; }
+.human-particle.playing { animation: humanRoute 4s linear infinite; }
+@keyframes humanRoute {
+  0% { left: 62px; top: 52px; }
+  35% { left: 47%; top: 125px; background: #e74c5e; }
+  70% { left: 70%; top: 185px; background: #e74c5e; }
+  100% { left: calc(100% - 92px); top: 220px; background: #e74c5e; }
+}
+
+.insect-diagram { background: linear-gradient(145deg, #fff9df, #f4f8e8); }
+.insect-body { position: absolute; inset: 35px 30px; border: 5px solid #9d7414; border-radius: 48% 52% 45% 55%; background: rgba(242,193,66,.18); }
+.spiracle { position: absolute; left: -14px; top: 110px; background: #355b52; color: white; border-radius: 50%; width: 58px; height: 58px; display: grid; place-items: center; font-size: .78rem; font-weight: 800; }
+.trachea { position: absolute; height: 14px; background: #eeb72c; border: 3px solid #aa7b05; border-radius: 14px; transform-origin: left center; }
+.main-trachea { left: 30px; top: 130px; width: 70%; }
+.branch-one { left: 48%; top: 135px; width: 31%; transform: rotate(-42deg); }
+.branch-two { left: 58%; top: 130px; width: 25%; transform: rotate(44deg); }
+.cell-cluster { position: absolute; right: 20px; top: 50px; width: 76px; height: 76px; border-radius: 50%; background: #61a578; color: white; display: grid; place-items: center; font-weight: 900; }
+.dorsal-vessel { position: absolute; left: 90px; right: 55px; top: 25px; height: 16px; border-radius: 10px; background: #c65353; color: white; font-size: .65rem; text-align: center; line-height: 16px; }
+.hemolymph-label { position: absolute; left: 80px; bottom: 28px; color: #6f674b; font-size: .8rem; font-weight: 700; }
+.insect-particle { left: 6px; top: 120px; }
+.insect-particle.playing { animation: insectRoute 4s linear infinite; }
+@keyframes insectRoute {
+  0% { left: 6px; top: 120px; }
+  45% { left: 52%; top: 120px; }
+  75% { left: 68%; top: 67px; }
+  100% { left: calc(100% - 76px); top: 59px; }
+}
+.route-list { color: var(--muted); line-height: 1.8; padding-left: 1.4rem; }
+.concept-summary { margin-top: 22px; padding: 18px 20px; border-left: 6px solid #16838b; background: #eaf7f6; border-radius: 0 14px 14px 0; line-height: 1.7; }
+
+.lab-layout { display: grid; grid-template-columns: 300px 1fr; gap: 24px; }
+.control-panel { padding: 24px; height: fit-content; position: sticky; top: 90px; }
+.control-panel label { display: block; margin-bottom: 24px; }
+.control-panel label span, .control-panel label strong { display: block; }
+.control-panel label strong { margin: 8px 0; color: #0f7780; font-size: 1.25rem; }
+input[type="range"] { width: 100%; accent-color: #16838b; }
+.control-panel button + button { margin-top: 10px; }
+.status-card h3 { margin-top: 0; }
+.body-silhouette { height: 260px; position: relative; margin: 10px 0 18px; background: #eff5f7; overflow: hidden; }
+.human-silhouette { border-radius: 48% 48% 36% 36% / 30% 30% 70% 70%; }
+.insect-silhouette { border-radius: 48% 52% 42% 58%; border: 5px solid #ad8015; }
+.cell-map { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(6, 1fr); padding: 24px; gap: 10px; }
+.cell-dot { width: 100%; aspect-ratio: 1; border-radius: 50%; background: var(--green); opacity: .85; transition: .25s; box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); }
+.cell-dot.warning { background: var(--yellow); }
+.cell-dot.danger { background: var(--red); }
+.meter-row { display: flex; justify-content: space-between; font-weight: 800; }
+.meter { height: 12px; background: #e6edf2; border-radius: 999px; overflow: hidden; margin: 8px 0 12px; }
+.meter-fill { height: 100%; width: 0; background: linear-gradient(90deg, #d94b4b, #edbd3e 45%, #2e9f69); transition: .35s; }
+.result-message { min-height: 48px; color: var(--muted); line-height: 1.5; }
+.dashboard { margin-top: 22px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; }
+th, td { text-align: left; padding: 13px; border-bottom: 1px solid var(--line); }
+th { background: #edf7f7; }
+.model-note { color: var(--muted); font-size: .88rem; line-height: 1.5; }
+
+.challenge-card h3, .giant-lab h3 { margin-top: 0; }
+.route-buttons { display: flex; flex-wrap: wrap; gap: 9px; margin: 16px 0; }
+.route-buttons button { border: 1px solid var(--line); background: #f7fafb; border-radius: 10px; padding: 10px 13px; font-weight: 800; }
+.route-buttons button.correct { background: #ddf5e8; color: #19734a; border-color: #8bd4ae; }
+.route-buttons button.wrong { background: #ffe6e6; color: #a82d2d; border-color: #ef9c9c; animation: shake .2s linear 2; }
+@keyframes shake { 50% { transform: translateX(5px); } }
+.progress-line { height: 10px; border-radius: 999px; overflow: hidden; background: #e9eef1; }
+.progress-line div { height: 100%; width: 0; background: #2e9f69; transition: .3s; }
+.feedback { min-height: 42px; color: var(--muted); }
+.giant-lab { margin-top: 24px; display: grid; grid-template-columns: 1.1fr 1fr .9fr; gap: 24px; align-items: center; }
+.upgrade-controls label { display: block; margin: 14px 0; font-weight: 800; }
+.giant-result { display: flex; align-items: center; gap: 18px; }
+.score-ring { flex: 0 0 120px; width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#2e9f69 var(--score, 0%), #e3ecec 0); display: grid; place-content: center; text-align: center; border: 8px solid white; box-shadow: 0 0 0 1px var(--line); }
+.score-ring span { font-size: 2rem; font-weight: 900; }
+.score-ring small { color: var(--muted); }
+
+.quiz-form { display: grid; gap: 16px; }
+.quiz-item { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 21px; box-shadow: 0 9px 26px rgba(42,76,106,.07); }
+.quiz-item h3 { margin-top: 0; font-size: 1.08rem; }
+.quiz-options { display: grid; gap: 8px; }
+.quiz-options label { padding: 10px 12px; border-radius: 10px; background: #f5f8fa; cursor: pointer; }
+.quiz-options label:has(input:checked) { background: #ddf3f2; outline: 2px solid #48aaa5; }
+.quiz-item.correct { border-color: #56b684; }
+.quiz-item.incorrect { border-color: #dc6868; }
+.quiz-explanation { margin: 10px 0 0; color: var(--muted); line-height: 1.55; }
+.quiz-actions { display: flex; gap: 10px; margin: 22px 0; }
+.quiz-result { padding: 22px; border-radius: 18px; background: #eaf7f6; font-size: 1.2rem; font-weight: 800; }
+
+footer { padding: 30px 22px 50px; text-align: center; color: var(--muted); }
+.tour-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(8,31,46,.68); display: grid; place-items: center; padding: 20px; }
+.tour-box { width: min(520px, 100%); background: white; border-radius: 22px; padding: 28px; box-shadow: var(--shadow); }
+.tour-box h3 { font-size: 1.7rem; margin-bottom: 8px; }
+.tour-box p { color: var(--muted); line-height: 1.7; }
+.tour-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+@media (max-width: 900px) {
+  .hero { align-items: flex-start; flex-direction: column; }
+  .compare-grid, .challenge-grid, .status-grid, .giant-lab { grid-template-columns: 1fr; }
+  .lab-layout { grid-template-columns: 1fr; }
+  .control-panel { position: static; }
+  .giant-result { justify-content: center; }
+}
+
+@media (max-width: 620px) {
+  .tabs { grid-template-columns: repeat(2, 1fr); position: static; }
+  main { padding-inline: 14px; }
+  .section-heading { align-items: flex-start; flex-direction: column; }
+  .animation-controls { display: flex; flex-wrap: wrap; }
+  .diagram { height: 250px; }
+  .card-title-row { flex-direction: column; }
+  .organism-card, .status-card, .challenge-card, .dashboard, .giant-lab { padding: 18px; }
+}
+
+
+/* 免費公有領域解剖圖整合 */
+.model-art { position: absolute; z-index: 0; display: block; pointer-events: none; user-select: none; }
+.human-model-art { height: 94%; width: auto; left: 50%; top: 3%; transform: translateX(-50%); object-fit: contain; filter: drop-shadow(0 10px 12px rgba(45, 67, 83, .16)); }
+.human-diagram .organ, .human-diagram .tube { display: none; }
+.human-diagram { background: radial-gradient(circle at center, #fff 0%, #f6fbff 62%, #e7f2f8 100%); }
+.anatomy-label { position: absolute; z-index: 4; padding: 5px 9px; border-radius: 999px; background: rgba(255,255,255,.92); border: 1px solid var(--line); box-shadow: 0 4px 12px rgba(25,56,75,.12); font-size: .76rem; font-weight: 900; }
+.label-lung { left: 12%; top: 27%; color: #337db1; }
+.label-heart { left: 60%; top: 38%; color: var(--human-dark); }
+.label-muscle { right: 8%; bottom: 10%; color: #75434b; }
+
+.insect-body { background: linear-gradient(145deg, rgba(255,250,224,.88), rgba(241,247,221,.82)); }
+.insect-model-art { height: 96%; width: 68%; left: 50%; top: 2%; transform: translateX(-50%) rotate(90deg); object-fit: contain; opacity: .78; filter: sepia(.35) saturate(.8) drop-shadow(0 8px 9px rgba(79,61,18,.2)); }
+.insect-body .trachea, .insect-body .spiracle, .insect-body .cell-cluster, .insect-body .dorsal-vessel, .insect-body .hemolymph-label, .insect-body .particle { z-index: 3; }
+
+.human-silhouette { border-radius: 20px; background: #f5f9fb url('assets/human-circulatory-system.webp') center / auto 94% no-repeat; }
+.insect-silhouette { border-radius: 20px; background: #fbf8e9 url('assets/insect-cockroach.webp') center / auto 94% no-repeat; }
+.body-silhouette::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.2); pointer-events: none; }
+.cell-map { z-index: 2; }
+.asset-credit { max-width: 860px; margin: 8px auto 0; font-size: .78rem; line-height: 1.6; }

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="國中生互動教材：比較人類閉鎖式循環與昆蟲開放式循環、氣管系統及體型對氧氣輸送的影響。" />
+  <title>循環大挑戰｜人類與昆蟲的送氧比較</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">國中生物互動教材</p>
+      <h1>循環大挑戰</h1>
+      <p class="subtitle">人類與昆蟲，誰能把氧氣送得更快？</p>
+    </div>
+    <button id="startTourBtn" class="primary-btn">開始導覽</button>
+  </header>
+
+  <nav class="tabs" aria-label="教材功能分頁">
+    <button class="tab active" data-target="concept">概念動畫</button>
+    <button class="tab" data-target="lab">體型實驗室</button>
+    <button class="tab" data-target="challenge">挑戰任務</button>
+    <button class="tab" data-target="quiz">學習檢測</button>
+  </nav>
+
+  <main>
+    <section id="concept" class="panel active-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">第一站</p>
+          <h2>兩套完全不同的送氧方式</h2>
+        </div>
+        <div class="animation-controls">
+          <button id="playBtn" class="primary-btn">▶ 播放</button>
+          <button id="pauseBtn" class="secondary-btn">暫停</button>
+          <button id="resetBtn" class="secondary-btn">重設</button>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <article class="organism-card human-card">
+          <div class="card-title-row">
+            <div>
+              <span class="tag">人類</span>
+              <h3>閉鎖式循環</h3>
+            </div>
+            <span class="system-badge">血液負責運氧</span>
+          </div>
+          <div class="diagram human-diagram" aria-label="人類循環示意圖">
+            <img class="model-art human-model-art" src="assets/human-circulatory-system.webp" alt="人體循環系統解剖插圖" />
+            <div class="anatomy-label label-lung">肺部交換</div>
+            <div class="anatomy-label label-heart">心臟</div>
+            <div class="anatomy-label label-muscle">全身細胞</div>
+            <div class="organ lung">肺</div>
+            <div class="tube vertical"></div>
+            <div class="organ heart">心臟</div>
+            <div class="tube horizontal"></div>
+            <div class="organ muscle">肌肉細胞</div>
+            <div class="particle oxygen human-particle" data-path="human">O₂</div>
+          </div>
+          <ol class="route-list">
+            <li>氧氣從肺進入血液</li>
+            <li>紅血球攜帶氧氣</li>
+            <li>心臟把血液送往全身</li>
+            <li>氧氣從微血管進入細胞</li>
+          </ol>
+        </article>
+
+        <article class="organism-card insect-card">
+          <div class="card-title-row">
+            <div>
+              <span class="tag">昆蟲</span>
+              <h3>開放式循環＋氣管系統</h3>
+            </div>
+            <span class="system-badge">氣管負責運氧</span>
+          </div>
+          <div class="diagram insect-diagram" aria-label="昆蟲氣管與血淋巴示意圖">
+            <div class="insect-body">
+              <img class="model-art insect-model-art" src="assets/insect-cockroach.webp" alt="昆蟲外形解剖插圖" />
+              <div class="spiracle">氣門</div>
+              <div class="trachea main-trachea"></div>
+              <div class="trachea branch-one"></div>
+              <div class="trachea branch-two"></div>
+              <div class="cell-cluster">細胞</div>
+              <div class="dorsal-vessel">背血管</div>
+              <div class="hemolymph-label">血淋巴：運送養分、代謝物</div>
+              <div class="particle oxygen insect-particle" data-path="insect">O₂</div>
+            </div>
+          </div>
+          <ol class="route-list">
+            <li>空氣由氣門進入</li>
+            <li>氧氣沿著氣管與微氣管移動</li>
+            <li>氧氣直接到達細胞附近</li>
+            <li>血淋巴通常不是主要運氧工具</li>
+          </ol>
+        </article>
+      </div>
+
+      <div class="concept-summary">
+        <strong>核心觀念：</strong>
+        人類主要靠血液循環送氧；昆蟲主要靠氣管系統送氧。開放式循環並不等於「沒有循環」，只是血淋巴不完全被血管包住。
+      </div>
+    </section>
+
+    <section id="lab" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">第二站</p>
+          <h2>體型實驗室</h2>
+          <p>調整條件，觀察人類與昆蟲的氧氣輸送表現。</p>
+        </div>
+      </div>
+
+      <div class="lab-layout">
+        <aside class="control-panel">
+          <label>
+            <span>體型大小</span>
+            <strong id="sizeValue">20 公分</strong>
+            <input id="sizeSlider" type="range" min="1" max="100" value="20" />
+          </label>
+
+          <label>
+            <span>活動強度</span>
+            <strong id="activityValue">行走</strong>
+            <input id="activitySlider" type="range" min="1" max="3" value="2" />
+          </label>
+
+          <label>
+            <span>環境氧氣濃度</span>
+            <strong id="oxygenValue">21%</strong>
+            <input id="oxygenSlider" type="range" min="10" max="35" value="21" />
+          </label>
+
+          <button id="randomScenarioBtn" class="primary-btn full-width">隨機產生情境</button>
+          <button id="labResetBtn" class="secondary-btn full-width">恢復標準條件</button>
+        </aside>
+
+        <div class="simulation-area">
+          <div class="status-grid">
+            <article class="status-card">
+              <h3>人類供氧狀態</h3>
+              <div class="body-silhouette human-silhouette" role="img" aria-label="人體循環系統插圖與供氧細胞狀態">
+                <div id="humanCells" class="cell-map"></div>
+              </div>
+              <div class="meter-row"><span>供氧效率</span><strong id="humanEfficiency">--</strong></div>
+              <div class="meter"><div id="humanMeter" class="meter-fill"></div></div>
+              <p id="humanMessage" class="result-message"></p>
+            </article>
+
+            <article class="status-card">
+              <h3>昆蟲供氧狀態</h3>
+              <div class="body-silhouette insect-silhouette" role="img" aria-label="昆蟲插圖與供氧細胞狀態">
+                <div id="insectCells" class="cell-map"></div>
+              </div>
+              <div class="meter-row"><span>供氧效率</span><strong id="insectEfficiency">--</strong></div>
+              <div class="meter"><div id="insectMeter" class="meter-fill"></div></div>
+              <p id="insectMessage" class="result-message"></p>
+            </article>
+          </div>
+
+          <div class="dashboard">
+            <h3>即時比較儀表板</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>比較項目</th><th>人類</th><th>昆蟲</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>主要送氧方式</td><td>肺＋血液＋紅血球</td><td>氣門＋氣管＋微氣管</td></tr>
+                  <tr><td>循環類型</td><td>閉鎖式循環</td><td>開放式循環</td></tr>
+                  <tr><td>模擬送氧時間</td><td id="humanTime">--</td><td id="insectTime">--</td></tr>
+                  <tr><td>缺氧細胞比例</td><td id="humanHypoxia">--</td><td id="insectHypoxia">--</td></tr>
+                  <tr><td>活動承受度</td><td id="humanTolerance">--</td><td id="insectTolerance">--</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="model-note">※ 數值為教學模擬值，用來呈現趨勢，不代表特定物種的真實測量結果。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenge" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">第三站</p>
+          <h2>把氧氣送到細胞</h2>
+          <p>依正確順序點擊路線，完成送氧任務。</p>
+        </div>
+      </div>
+
+      <div class="challenge-grid">
+        <article class="challenge-card">
+          <h3>任務 A：人類送氧路線</h3>
+          <p>依序點選正確構造。</p>
+          <div id="humanRouteButtons" class="route-buttons">
+            <button data-step="肺">肺</button>
+            <button data-step="心臟">心臟</button>
+            <button data-step="動脈">動脈</button>
+            <button data-step="微血管">微血管</button>
+            <button data-step="肌肉細胞">肌肉細胞</button>
+          </div>
+          <div class="progress-line"><div id="humanRouteProgress"></div></div>
+          <p id="humanRouteFeedback" class="feedback">請從氧氣進入人體的位置開始。</p>
+          <button id="resetHumanRoute" class="secondary-btn">重新挑戰</button>
+        </article>
+
+        <article class="challenge-card">
+          <h3>任務 B：昆蟲送氧路線</h3>
+          <p>注意：背血管不是氧氣的主要通道。</p>
+          <div id="insectRouteButtons" class="route-buttons">
+            <button data-step="氣門">氣門</button>
+            <button data-step="氣管">氣管</button>
+            <button data-step="背血管">背血管</button>
+            <button data-step="微氣管">微氣管</button>
+            <button data-step="細胞">細胞</button>
+          </div>
+          <div class="progress-line"><div id="insectRouteProgress"></div></div>
+          <p id="insectRouteFeedback" class="feedback">請從外界空氣進入昆蟲的位置開始。</p>
+          <button id="resetInsectRoute" class="secondary-btn">重新挑戰</button>
+        </article>
+      </div>
+
+      <article class="giant-lab">
+        <div>
+          <span class="tag">進階挑戰</span>
+          <h3>設計一隻巨型昆蟲</h3>
+          <p>調整氣管粗細、氣門數量與腹部泵動速度，讓大型昆蟲維持足夠供氧。</p>
+        </div>
+        <div class="upgrade-controls">
+          <label>氣管粗細 <input id="tracheaSlider" type="range" min="1" max="10" value="4" /></label>
+          <label>氣門數量 <input id="spiracleSlider" type="range" min="1" max="10" value="4" /></label>
+          <label>腹部泵動 <input id="pumpSlider" type="range" min="1" max="10" value="4" /></label>
+        </div>
+        <div class="giant-result">
+          <div class="score-ring"><span id="giantScore">0</span><small>供氧分數</small></div>
+          <div>
+            <p id="giantMessage"></p>
+            <p id="spaceCost" class="model-note"></p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="quiz" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">第四站</p>
+          <h2>學習檢測</h2>
+          <p>完成五題挑戰，看看你是否掌握關鍵概念。</p>
+        </div>
+      </div>
+      <form id="quizForm" class="quiz-form"></form>
+      <div class="quiz-actions">
+        <button type="button" id="submitQuizBtn" class="primary-btn">提交答案</button>
+        <button type="button" id="resetQuizBtn" class="secondary-btn">重新作答</button>
+      </div>
+      <div id="quizResult" class="quiz-result" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>本教材為簡化模型。真實生物的體型與生理表現還會受到外骨骼、代謝率、環境、演化與行為等因素影響。</p>
+    <p class="asset-credit">圖像來源：人體循環系統插圖由 LadyofHats 製作；昆蟲線稿來自 Pearson Scott Foresman。兩者均經 Wikimedia Commons 標示為公有領域，已下載至專案內，可離線使用。</p>
+  </footer>
+
+  <div id="tourOverlay" class="tour-overlay" hidden>
+    <div class="tour-box">
+      <span id="tourStepLabel" class="tag">導覽 1/4</span>
+      <h3 id="tourTitle"></h3>
+      <p id="tourText"></p>
+      <div class="tour-actions">
+        <button id="tourCloseBtn" class="secondary-btn">關閉</button>
+        <button id="tourNextBtn" class="primary-btn">下一步</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
